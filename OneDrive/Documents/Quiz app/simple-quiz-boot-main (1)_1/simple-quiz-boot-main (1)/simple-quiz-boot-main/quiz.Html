@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>quiz app - HUCCISA Project</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+ <link rel="stylesheet" href="./quiz.css">
+</head>
+<body>
+  <header>
+    <div class="container">
+      <h1><i class="fas fa-brain"></i> With Kenenisa Boru- Quiz app</h1>
+      <p>Test your web development knowledge with this professional quiz application</p>
+    </div>
+    <div class="header-decoration"></div>
+  </header>
+
+  <main class="container">
+    <div class="quiz-wrapper">
+      <!-- Main Quiz Area -->
+      <div id="quiz-container">
+        <!-- Progress Section -->
+        <div class="quiz-progress">
+          <div class="progress-bar">
+            <div class="progress-fill" id="progress-fill"></div>
+          </div>
+          <div class="stats">
+            <div class="stat-box">
+              <div class="stat-value" id="score">0</div>
+              <div class="stat-label">Score</div>
+            </div>
+            <div class="stat-box">
+              <div class="stat-value" id="question-counter">1/10</div>
+              <div class="stat-label">Question</div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Question Section -->
+        <div class="question-header">
+          <span class="question-number" id="current-question-num">1</span>
+          <span class="question-category" id="question-category">Web Development</span>
+        </div>
+        
+        <div class="question-text" id="question-text"></div>
+        
+        <!-- Answers Section -->
+        <div id="answers-container"></div>
+        
+        <!-- Buttons -->
+        <div class="buttons-container">
+          <button class="quiz-btn" id="prev-btn">
+            <i class="fas fa-arrow-left"></i> Previous
+          </button>
+          <button class="quiz-btn" id="next-btn">
+            Next <i class="fas fa-arrow-right"></i>
+          </button>
+          <button class="quiz-btn" id="submit-btn">
+            <i class="fas fa-paper-plane"></i> Submit Quiz
+          </button>
+        </div>
+      </div>
+      
+      <!-- Sidebar -->
+      <div class="sidebar">
+        <h3 class="sidebar-title"><i class="fas fa-clock"></i> Timer</h3>
+        <div class="timer-container">
+          <div class="timer" id="timer">05:00</div>
+          <div class="timer-label">Time Remaining</div>
+        </div>
+        
+        <h3 class="sidebar-title"><i class="fas fa-list-ol"></i> Questions</h3>
+        <div class="question-nav" id="question-nav"></div>
+        
+        <h3 class="sidebar-title"><i class="fas fa-info-circle"></i> Instructions</h3>
+        <ul style="padding-left: 20px; font-size: 0.9rem; color: #6c757d;">
+          <li>Select one answer per question</li>
+          <li>You can navigate between questions</li>
+          <li>Timer will automatically submit the quiz</li>
+          <li>Review your answers before submitting</li>
+        </ul>
+      </div>
+    </div>
+  </main>
+  
+  <!-- Results Modal -->
+  <div class="results-modal" id="results-modal">
+    <div class="modal-content">
+      <h2 class="results-title">Quiz Completed!</h2>
+      <div class="score-circle" id="score-circle">
+        <div class="score-text" id="score-text">0/10</div>
+      </div>
+      <div class="results-stats">
+        <div class="result-stat">
+          <div class="result-stat-value" id="correct-answers">0</div>
+          <div>Correct</div>
+        </div>
+        <div class="result-stat">
+          <div class="result-stat-value" id="wrong-answers">0</div>
+          <div>Wrong</div>
+        </div>
+        <div class="result-stat">
+          <div class="result-stat-value" id="time-taken">05:00</div>
+          <div>Time Taken</div>
+        </div>
+      </div>
+      <p id="result-message"></p>
+      <div class="modal-buttons">
+        <button class="quiz-btn" id="restart-btn">
+          <i class="fas fa-redo"></i> Restart Quiz
+        </button>
+        <button class="quiz-btn" id="close-btn" style="background-color: #6c757d;">
+          <i class="fas fa-times"></i> Close
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="container">
+      <p>Created by <span class="creator">Kenenisa Boru</span> for HUCCISA Project</p>
+      <p class="hucclisa-logo">HUCCISA <i class="fas fa-code"></i> Web Development</p>
+      <p style="font-size: 0.9rem; opacity: 0.8; margin-top: 15px;">
+        "JazakAllahu Khairan to all HUCCISA members for your continuous support and guidance."
+      </p>
+    </div>
+  </footer>
+
+ <script src="./quiz.js"></script>
+</body>
+</html>
