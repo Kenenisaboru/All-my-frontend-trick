@@ -3,10 +3,18 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight, Play, Sparkles, Zap, Star, TrendingUp, ChevronDown } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { motion } from "framer-motion";
-import { TypeAnimation } from "react-type-animation";
 
 const Hero = () => {
   const [scrollProgress, setScrollProgress] = useState(0);
+  const [currentSpeedText, setCurrentSpeedText] = useState(0);
+  const [currentSubText, setCurrentSubText] = useState(0);
+
+  const speedTexts = ["Kenenisa Speed", "Lightning Speed", "Champions Speed"];
+  const subTexts = [
+    "The platform that empowers champions",
+    "Built for speed and excellence",
+    "Inspired by world-class performance"
+  ];
 
   useEffect(() => {
     const handleScroll = () => {
@@ -15,9 +23,24 @@ const Hero = () => {
       setScrollProgress((totalScroll / windowHeight) * 100);
     };
 
+    // Speed text rotation
+    const speedInterval = setInterval(() => {
+      setCurrentSpeedText((prev) => (prev + 1) % speedTexts.length);
+    }, 2000);
+
+    // Subtext rotation
+    const subInterval = setInterval(() => {
+      setCurrentSubText((prev) => (prev + 1) % subTexts.length);
+    }, 2000);
+
     window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+    
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      clearInterval(speedInterval);
+      clearInterval(subInterval);
+    };
+  }, );
 
   const metrics = [
     { value: "99.9%", label: "Uptime", icon: Zap, color: "text-green-500" },
@@ -114,42 +137,32 @@ const Hero = () => {
                   transition={{ duration: 0.6, delay: 0.2 }}
                   className="relative inline-block"
                 >
-                  <span className="bg-gradient-to-r from-primary via-primary/90 to-primary/70 bg-clip-text text-transparent">
-                    <TypeAnimation
-                      sequence={[
-                        'Kenenisa Speed',
-                        2000,
-                        'Lightning Speed',
-                        2000,
-                        'Champions Speed',
-                        2000,
-                      ]}
-                      wrapper="span"
-                      speed={50}
-                      repeat={Infinity}
-                      className="font-bold"
-                    />
-                  </span>
+                  <motion.span
+                    key={currentSpeedText}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -20 }}
+                    transition={{ duration: 0.5 }}
+                    className="bg-gradient-to-r from-primary via-primary/90 to-primary/70 bg-clip-text text-transparent font-bold inline-block"
+                  >
+                    {speedTexts[currentSpeedText]}
+                  </motion.span>
                   <div className="absolute -bottom-2 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary to-transparent" />
                 </motion.div>
               </h1>
 
               {/* Subheadline with Rotating Features */}
               <div className="text-xl md:text-2xl text-muted-foreground mb-8 h-12">
-                <TypeAnimation
-                  sequence={[
-                    'The platform that empowers champions',
-                    2000,
-                    'Built for speed and excellence',
-                    2000,
-                    'Inspired by world-class performance',
-                    2000,
-                  ]}
-                  wrapper="p"
-                  speed={50}
-                  repeat={Infinity}
+                <motion.div
+                  key={currentSubText}
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -10 }}
+                  transition={{ duration: 0.5 }}
                   className="leading-relaxed"
-                />
+                >
+                  {subTexts[currentSubText]}
+                </motion.div>
               </div>
 
               {/* Kenenisa Boru Legacy Quote */}
@@ -252,15 +265,17 @@ const Hero = () => {
                 <p className="text-sm text-muted-foreground mb-4 text-center">Trusted by champions worldwide</p>
                 <div className="grid grid-cols-3 gap-4">
                   {["Google", "Microsoft", "Airbnb", "Spotify", "Slack", "Tesla"].map((company, index) => (
-                    <div
+                    <motion.div
                       key={company}
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.4, delay: index * 0.1 }}
                       className="h-12 rounded-lg bg-background/50 flex items-center justify-center group hover:bg-background/80 transition-colors"
-                      style={{ animationDelay: `${index * 0.05}s` }}
                     >
                       <span className="text-lg font-display font-semibold text-muted-foreground group-hover:text-foreground transition-colors">
                         {company}
                       </span>
-                    </div>
+                    </motion.div>
                   ))}
                 </div>
               </motion.div>
