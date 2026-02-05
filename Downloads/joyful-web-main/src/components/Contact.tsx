@@ -273,7 +273,7 @@ const Contact = () => {
                       type="tel"
                       value={formData.phone}
                       onChange={handleChange}
-                      placeholder="+1 (234) 567-890"
+                      placeholder="+251 0983701428"
                       className="bg-background/70 border-border/50 focus:border-primary h-12"
                     />
                   </div>
